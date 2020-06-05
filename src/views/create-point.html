@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% set pageId = "page-create-point" %}
+
+{% block title %}
+    <title>Criar um ponto de coleta</title>
+{% endblock title %}
+
+{% block styles %}
+
+    <link rel="stylesheet" href="styles/create-point.css">
+
+{% endblock styles %}
+
+{% block content %}
+    {%  include "partials/page-header.html" %}
+
+    <form action="">
+
+        <h1>Cadastro do ponto de coleta</h1>
+
+        <!--Pra deixar mais semântico, ele serve pra agrupar informações-->
+        <fieldset>
+            <!--Serve pra colocar uma legenda a esse grupo-->
+            <legend>
+                <h2>Dados de entidade</h2>
+            </legend>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="name">Nome da entidade</label>
+                    <input type="text" name="name" id="name" required="required">
+                </div>
+
+                <div class="field">
+                    <label for="image">Imagem da entidade</label>
+                    <input 
+                        type="url" 
+                        name="image"
+                        placeholder="http://" 
+                        id="image" 
+                        required="required">
+                </div>
+
+            </div>
+
+            <!--Um atalho, colocamos uma classe ou id com o nome. Ex: .field, automaticamente gera uma div-->
+            <div class="field">
+                <!--Colocamos um nome ao input-->
+                <!--Atributo for serve pra tambem ser semântico, estamos associando a label ao input-->
+                <label for="name">Nome da entidade</label>
+                <input type="text" name="name" id="name" required="required">
+            </div>
+
+            <!--Agrupamento de campos-->
+            <div class="field-group">
+                <!--Um atalho, colocamos uma classe ou id com o nome. Ex: .field, automaticamente gera uma div, mais se fizermos .field*2 ele vai multiplicar e gerar dois-->
+                <div class="field">
+                    <!--Outro atalho se colocarmos assim label+input, vai gerar automaticamnte os dois na sequência-->
+                    <label for="address">Endereço</label>
+                    <input type="text" name="address" id="address" required="required">
+
+                </div>
+
+                <div class="field">
+                    <label for="address2">Número/Complemento</label>
+                    <input type="text" name="address2" id="address2" required="required">
+                </div>
+
+            </div>
+
+            <div class="field-group">
+
+                <div class="field">
+                    <label for="state">Estado</label>
+                    <select name="uf" id="" required="required">
+                        <option value="">Selecione seu estado</option>
+                    </select>
+
+                    <input type="hidden" name="state">
+                </div>
+
+                <div class="field">
+                    <label for="city">Cidade</label>
+                    <!--Enquanto ele não selecionar o estado,a cidade vai ficar indisponivel com atributo disabled-->
+                    <select name="city" id="" disabled="disabled" required="required">
+                        <option value="">Selecione sua cidade</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Itens de coleta</h2>
+                <span>Selecione um ou mais itens abaixo</span>
+            </legend>
+
+            <div class="items-grid">
+                <!-- li>img+span Outro atalho, img está dentro de li, e ao lado da tag img vamos colocar um span-->
+                <!--data é um tipo de atributo especial do html que eu posso colocar diversas coisas, por exempo: Tudo que vier com data-, eu posso colocar qualquer coisa aqui-->
+                <li data-id="1">
+                    <img src="assets/lampadas.svg" alt="Lâmpadas">
+                    <span>Lâmpadas</span>
+                </li>
+
+                <li data-id="2">
+                    <img src="assets/baterias.svg" alt="Pilhas e Baterias">
+                    <span>Pilhas e Baterias</span>
+                </li>
+
+                <li data-id="3">
+                    <!--Dois click em cima da palavra, e aperto ctrl + d, ele vai selecionar tambem a próxima ocorrência-->
+                    <img src="assets/papeis-papelao.svg" alt="Papéis e Papelões">
+                    <span>Papéis e Papelões</span>
+                </li>
+
+                <li data-id="4">
+                    <img src="assets/eletronicos.svg" alt="Resíduos e Eletrônicos">
+                    <span>Resíduos e Eletrônicos</span>
+                </li>
+
+                <li data-id="5">
+                    <img src="assets/organicos.svg" alt="Resíduos Orgânicos">
+                    <span>Resíduos Orgânicos</span>
+                </li>
+
+                <li data-id="6">
+                    <img src="assets/oleo.svg" alt="Óleeo de Cozinha">
+                    <span>Óleo de Cozinha</span>
+                </li>
+
+            </div>
+
+            <input type="hidden" name="items">
+        </fieldset>
+
+        <!--Atributo type Submit significa enviar-->
+        <button type="submit">Cadastrar ponto de coleta</button>
+
+    </form>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="scripts/create-point.js"></script>
+{% endblock scripts %}
